@@ -1,0 +1,64 @@
+diff --git a/src/qxl_option_helpers.c b/src/qxl_option_helpers.c
+index 2aba677449c908dab291fc65769c499037403545..7707b7c549043940b27f44abec5c6458b93c7724 100644
+--- a/src/qxl_option_helpers.c
++++ b/src/qxl_option_helpers.c
+@@ -10,31 +10,32 @@
+ 
+ #include "qxl_option_helpers.h"
+ 
+-int get_int_option(OptionInfoPtr options, int option_index,
++int get_int_option(OptionInfoPtr options, int token,
+                    const char *env_name)
+ {
++    int value;
+     if (env_name && getenv(env_name)) {
+         return atoi(getenv(env_name));
+     }
+-    return options[option_index].value.num;
++    return xf86GetOptValInteger(options, token, &value) ? value : 0;
+ }
+ 
+-const char *get_str_option(OptionInfoPtr options, int option_index,
++const char *get_str_option(OptionInfoPtr options, int token,
+                            const char *env_name)
+ {
+     if (getenv(env_name)) {
+         return getenv(env_name);
+     }
+-    return options[option_index].value.str;
++    return xf86GetOptValString(options, token);
+ }
+ 
+-int get_bool_option(OptionInfoPtr options, int option_index,
++int get_bool_option(OptionInfoPtr options, int token,
+                      const char *env_name)
+ {
+     const char* value = getenv(env_name);
+ 
+     if (!value) {
+-        return options[option_index].value.bool;
++        return xf86ReturnOptValBool(options, token, FALSE);
+     }
+     if (strcmp(value, "0") == 0 ||
+         strcasecmp(value, "off") == 0 ||
+diff --git a/src/qxl_option_helpers.h b/src/qxl_option_helpers.h
+index 7c54c7265b93241252cc47ce500796c8468b5384..66d0a172942e994f6e1a59a7b3b83aef5d7ac35f 100644
+--- a/src/qxl_option_helpers.h
++++ b/src/qxl_option_helpers.h
+@@ -4,13 +4,13 @@
+ #include <xf86Crtc.h>
+ #include <xf86Opt.h>
+ 
+-int get_int_option(OptionInfoPtr options, int option_index,
++int get_int_option(OptionInfoPtr options, int token,
+                    const char *env_name);
+ 
+-const char *get_str_option(OptionInfoPtr options, int option_index,
++const char *get_str_option(OptionInfoPtr options, int token,
+                            const char *env_name);
+ 
+-int get_bool_option(OptionInfoPtr options, int option_index,
++int get_bool_option(OptionInfoPtr options, int token,
+                      const char *env_name);
+ 
+ #endif // OPTION_HELPERS_H
