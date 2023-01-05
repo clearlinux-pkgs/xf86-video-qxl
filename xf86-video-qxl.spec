@@ -6,7 +6,7 @@
 #
 Name     : xf86-video-qxl
 Version  : 0.1.5
-Release  : 180
+Release  : 181
 URL      : http://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-0.1.5.tar.bz2
 Source0  : http://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-0.1.5.tar.bz2
 Source1  : http://xorg.freedesktop.org/releases/individual/driver/xf86-video-qxl-0.1.5.tar.bz2.sig
