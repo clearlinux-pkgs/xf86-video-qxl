@@ -6,7 +6,7 @@
 #
 Name     : xf86-video-qxl
 Version  : 0.1.6
-Release  : 259
+Release  : 260
 URL      : https://www.x.org/releases/individual/driver/xf86-video-qxl-0.1.6.tar.xz
 Source0  : https://www.x.org/releases/individual/driver/xf86-video-qxl-0.1.6.tar.xz
 Source1  : https://www.x.org/releases/individual/driver/xf86-video-qxl-0.1.6.tar.xz.sig
